@@ -19,7 +19,7 @@ const DeleteButton = ({docId}) => {
   };
 
   return (
-    <div className=" hover:cursor-pointer" onClick={() => deleteDoc(docId)}>
+    <div className=" text-2xl hover:cursor-pointer" onClick={() => deleteDoc(docId)}>
       <Icon icon="mdi:delete-outline" />
     </div>
   );

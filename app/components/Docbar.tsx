@@ -25,10 +25,8 @@ const Docbar = async () => {
   return (
     <>
       <div className=" px-2 text-center w-[25%] bg-amber-50">
-        <div className="flex justify-end"></div>
-
         <AddNewButton />
-        <h2 className="mt-2 text-left text-xl font-semibold underline py-4">
+        <h2 className="mt-2 text-center text-xl font-semibold underline py-4">
           Documents
         </h2>
         <ul className="mt-4 text-center flex flex-col justify-center gap-2">

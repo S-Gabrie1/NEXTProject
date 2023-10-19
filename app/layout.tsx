@@ -24,8 +24,7 @@ export default function RootLayout({
       <DocProvider>
         <body className=" bg-slate-900">
           <Header />
-          <div className="flex">
-            <Docbar />
+          <div>
             <Main>{children}</Main>
           </div>
         </body>
