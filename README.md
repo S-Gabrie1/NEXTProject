@@ -1,6 +1,7 @@
 # Text Editor with Next.js & MySQL
 
-This project is somewhat a replica of word or google documents where you can write save edit and delete your documents using [Tiny editor](https://pages.github.com/](https://www.tiny.cloud/)https://www.tiny.cloud/)
+This project is somewhat a replica of word or google documents where you can write save edit and delete your documents using Next.js & MySQL database. 
+The editor used in this is project is  [Tiny editor](https://pages.github.com/](https://www.tiny.cloud/)https://www.tiny.cloud/)
 
 # Installation 
 
