@@ -6,8 +6,10 @@ This project is somewhat a replica of word or google documents where you can wri
 
 ```
 git clone URL
-cd ProjectName
-npm install
-npm run dev
 
+cd ProjectName
+
+npm install
+
+npm run dev
 ```
