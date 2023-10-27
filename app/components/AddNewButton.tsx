@@ -4,10 +4,13 @@ import React, { useContext, useState } from "react";
 import { DocContext } from "./DocContext";
 import { useRouter } from "next/navigation";
 
+
 const AddNewButton = () => {
   const { inputValues, setInputValues } = useContext(DocContext);
+
   const router = useRouter();
-  const handleChange = (e) => {
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setInputValues((prevState) => ({
       ...prevState,

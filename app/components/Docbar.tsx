@@ -1,19 +1,8 @@
 import React from "react";
 import EditDocButton from "./EditDocButton";
 import AddNewButton from "./AddNewButton";
+import { DocumentAPI } from "../Interfaces";
 
-interface Document {
-  product_id: number;
-  product_name: string;
-  text_field: string;
-  text_color: string;
-  bg_color: string;
-  date: string;
-}
-
-interface DocumentAPI {
-  products: Document[];
-}
 
 const Docbar = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/doctext`, {

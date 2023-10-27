@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 const DeleteButton = ({docId}) => {
   const router = useRouter();
 
-  const deleteDoc = async (docId) => {
+  const deleteDoc = async (docId: number) => {
     const options = {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },

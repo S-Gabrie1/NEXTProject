@@ -1,27 +1,37 @@
 "use client";
-import { createContext, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, createContext, useEffect, useState } from "react";
+import { Document, shortDoc } from "../Interfaces";
 
-export const DocContext = createContext({
-  dataValues: {},
-  setDataValues: (values: Doc) => {},
-  inputValues: {},
-  setInputValues: (values: Document) => {},
+interface ContextValue {
+  dataValues: Document
+  setDataValues: Dispatch<SetStateAction<Document>>
+  inputValues: shortDoc
+  setInputValues: Dispatch<SetStateAction<shortDoc>>
+}
+
+
+export const DocContext = createContext<ContextValue>({
+  dataValues: {
+    product_id: null,
+    product_name: "",
+    text_field: "",
+    text_color: "",
+    bg_color: "",
+    date: "",
+  },
+  setDataValues: (values: Document) => {},
+  inputValues: {
+    product_id: null,
+    product_name: "",
+    text_field: "",
+    text_color: "",
+    bg_color: "",
+  },
+  setInputValues: (values: shortDoc) => {},
 });
 
-interface Document {
-  product_name: string;
-  text_field: string;
-  text_color: string;
-  bg_color: string;
-}
-
-interface Doc extends Document {
-  product_id: number | null;
-  date: string;
-}
-
 export const DocProvider = ({ children }) => {
-  const [dataValues, setDataValues] = useState<Doc>({
+  const [dataValues, setDataValues] = useState<Document>({
     product_id: null,
     product_name: "",
     text_field: "",
@@ -30,7 +40,8 @@ export const DocProvider = ({ children }) => {
     date: "",
   });
 
-  const [inputValues, setInputValues] = useState<Document>({
+  const [inputValues, setInputValues] = useState<shortDoc>({
+    product_id: null,
     product_name: "",
     text_field: "This is some new text...",
     text_color: "black",

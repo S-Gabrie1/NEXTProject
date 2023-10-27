@@ -3,24 +3,25 @@ import { useRouter } from "next/navigation";
 import React, { useContext, useRef } from "react";
 import BundledEditor from "../BundledEditor";
 import { DocContext } from "./DocContext";
+import { Editor } from "tinymce";
 
 export default function TextEditor() {
   const router = useRouter();
   const { dataValues, setDataValues } = useContext(DocContext);
 
-  const editorRef = useRef(null);
+  const editorRef = useRef<Editor | null>(null);
 
-  const saveDocument =  () => {
-    let fontRef = editorRef.current.selection.getNode().style.color.toString()
-    let bgRef = editorRef.current.selection.getNode().style.backgroundColor.toString()
-    let textRef = editorRef.current.getContent();
-
-    setDataValues( (prevState) => {
+  const saveDocument = async () => {
+    if (editorRef.current) { 
+      let fontRef = editorRef.current.selection.getNode().style.color.toString();
+      let bgRef = editorRef.current.selection.getNode().style.backgroundColor.toString();
+      let textRef = editorRef.current.getContent();
+  
       const updatedDataValues = {
-        ...prevState,
+        ...dataValues,
         text_field: textRef,
       };
-
+  
       try {
         const options = {
           method: "PUT",
@@ -32,13 +33,21 @@ export default function TextEditor() {
             date: "",
           }),
         };
-        const req =  fetch("http://localhost:3000/api/doctext", options);
-        return req
+        const response = await fetch("http://localhost:3000/api/doctext", options);
+  
+        if (response.ok) {
+          const updatedData = await response.json();
+          setDataValues(updatedData); 
+          router.refresh();
+        } else {
+          console.error("Failed to save document:", response.statusText);
+        }
       } catch (error) {
-        console.log(error);
+        console.error("An error occurred:", error);
       }
-    });
-    router.refresh();
+    } else {
+      console.error("editorRef.current is null. Make sure the ref is properly initialized.");
+    }
   };
 
   return (
